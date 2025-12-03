@@ -47,22 +47,22 @@ class AppPanelProvider extends PanelProvider
                     ->login(
                         layout: AuthLayout::Panel,
                         media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left, // or MediaDirection::Left
+                        direction: MediaDirection::Left,
                     )
                     ->registration(
                         layout: AuthLayout::Panel,
                         media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left, // or MediaDirection::Left
+                        direction: MediaDirection::Left,
                     )
                     ->passwordReset(
                         layout: AuthLayout::Panel,
                         media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left, // or MediaDirection::Left
+                        direction: MediaDirection::Left
                     )
                     ->emailVerification(
                         layout: AuthLayout::Panel,
                         media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left, // or MediaDirection::Left
+                        direction: MediaDirection::Left
                     )
                     ->themeToggle()]
             )

@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Asistencia extends Model
+{
+    protected $fillable = [
+        'asignatura_id',
+        'fecha',
+        'finalizada',
+    ];
+
+    protected $casts = [
+        'fecha' => 'date',
+        'finalizada' => 'boolean',
+    ];
+
+    /* ------------------------------
+       Relaciones
+    -------------------------------*/
+
+    public function asignatura()
+    {
+        return $this->belongsTo(Asignatura::class);
+    }
+
+    public function detalles()
+    {
+        return $this->hasMany(DetalleAsistencia::class);
+    }
+}
