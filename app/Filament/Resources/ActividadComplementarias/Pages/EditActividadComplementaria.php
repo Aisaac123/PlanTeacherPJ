@@ -9,6 +9,7 @@ use Filament\Resources\Pages\EditRecord;
 class EditActividadComplementaria extends EditRecord
 {
     protected static string $resource = ActividadComplementariaResource::class;
+
     public static function shouldRegisterSpotlight(): bool
     {
         return false;

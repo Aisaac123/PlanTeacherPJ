@@ -11,7 +11,6 @@ use App\Models\Asistencia;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class AsistenciaResource extends Resource
@@ -19,12 +18,14 @@ class AsistenciaResource extends Resource
     protected static ?string $model = Asistencia::class;
 
     protected static ?string $modelLabel = 'Asistencia';
+
     protected static ?string $pluralModelLabel = 'Asistencias';
 
     protected static ?string $navigationLabel = 'Asistencias';
-    protected static string|null|\UnitEnum $navigationGroup = 'Seguimiento';
-    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-calendar-days';
 
+    protected static string|null|\UnitEnum $navigationGroup = 'Seguimiento';
+
+    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-calendar-days';
 
     protected static ?string $recordTitleAttribute = 'Asistencias';
 

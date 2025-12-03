@@ -16,7 +16,12 @@ class EditTutoria extends EditRecord
             DeleteAction::make(),
         ];
     }
-    public function getTitle(): string { return 'Editar Tutoría'; }
+
+    public function getTitle(): string
+    {
+        return 'Editar Tutoría';
+    }
+
     public static function shouldRegisterSpotlight(): bool
     {
         return false;

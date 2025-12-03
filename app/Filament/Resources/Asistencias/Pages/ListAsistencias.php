@@ -16,6 +16,9 @@ class ListAsistencias extends ListRecords
             CreateAction::make(),
         ];
     }
-    public function getTitle(): string { return 'Asistencias'; }
 
+    public function getTitle(): string
+    {
+        return 'Asistencias';
+    }
 }

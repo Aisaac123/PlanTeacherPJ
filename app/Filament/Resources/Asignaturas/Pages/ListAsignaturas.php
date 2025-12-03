@@ -16,6 +16,7 @@ class ListAsignaturas extends ListRecords
             CreateAction::make(),
         ];
     }
+
     public function getTitle(): string
     {
         return 'Asignaturas';

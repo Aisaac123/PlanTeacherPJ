@@ -16,7 +16,12 @@ class EditAsistencia extends EditRecord
             DeleteAction::make(),
         ];
     }
-    public function getTitle(): string { return 'Editar Asistencia'; }
+
+    public function getTitle(): string
+    {
+        return 'Editar Asistencia';
+    }
+
     public static function shouldRegisterSpotlight(): bool
     {
         return false;

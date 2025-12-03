@@ -9,6 +9,8 @@ class CreateEstudiante extends CreateRecord
 {
     protected static string $resource = EstudianteResource::class;
 
-    public function getTitle(): string { return 'Registrar Estudiante'; }
-
+    public function getTitle(): string
+    {
+        return 'Registrar Estudiante';
+    }
 }

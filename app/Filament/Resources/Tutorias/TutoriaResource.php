@@ -11,7 +11,6 @@ use App\Models\Tutoria;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class TutoriaResource extends Resource
@@ -19,10 +18,13 @@ class TutoriaResource extends Resource
     protected static ?string $model = Tutoria::class;
 
     protected static ?string $modelLabel = 'Tutoria';
+
     protected static ?string $pluralModelLabel = 'Tutorías';
 
     protected static ?string $navigationLabel = 'Tutorías';
+
     protected static string|null|\UnitEnum $navigationGroup = 'Seguimiento';
+
     protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     protected static ?string $recordTitleAttribute = 'Tutorias';

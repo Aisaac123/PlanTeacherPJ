@@ -11,7 +11,6 @@ use App\Models\Estudiante;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class EstudianteResource extends Resource
@@ -19,10 +18,13 @@ class EstudianteResource extends Resource
     protected static ?string $model = Estudiante::class;
 
     protected static ?string $modelLabel = 'Estudiante';
+
     protected static ?string $pluralModelLabel = 'Estudiantes';
 
     protected static ?string $navigationLabel = 'Estudiantes';
+
     protected static string|null|\UnitEnum $navigationGroup = 'Académico';
+
     protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-user-group';
 
     protected static ?string $recordTitleAttribute = 'Estudiantes';

@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListActividadDocentes extends ListRecords
 {
     protected static string $resource = ActividadDocenteResource::class;
+
     public function getTitle(): string
     {
         return 'Listado de Actividades';

@@ -17,6 +17,8 @@ class ListEstudiantes extends ListRecords
         ];
     }
 
-    public function getTitle(): string { return 'Estudiantes'; }
-
+    public function getTitle(): string
+    {
+        return 'Estudiantes';
+    }
 }

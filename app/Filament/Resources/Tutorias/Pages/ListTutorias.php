@@ -16,6 +16,9 @@ class ListTutorias extends ListRecords
             CreateAction::make(),
         ];
     }
-    public function getTitle(): string { return 'Tutorías'; }
 
+    public function getTitle(): string
+    {
+        return 'Tutorías';
+    }
 }

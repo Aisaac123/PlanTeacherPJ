@@ -16,10 +16,12 @@ class EditAsignatura extends EditRecord
             DeleteAction::make(),
         ];
     }
+
     public function getTitle(): string
     {
         return 'Editar Asignatura';
     }
+
     public static function shouldRegisterSpotlight(): bool
     {
         return false;

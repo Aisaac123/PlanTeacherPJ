@@ -16,7 +16,12 @@ class EditEstudiante extends EditRecord
             DeleteAction::make(),
         ];
     }
-    public function getTitle(): string { return 'Editar Estudiante'; }
+
+    public function getTitle(): string
+    {
+        return 'Editar Estudiante';
+    }
+
     public static function shouldRegisterSpotlight(): bool
     {
         return false;

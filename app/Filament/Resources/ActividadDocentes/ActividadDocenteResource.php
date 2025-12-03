@@ -11,7 +11,6 @@ use App\Models\ActividadDocente;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class ActividadDocenteResource extends Resource
@@ -19,9 +18,11 @@ class ActividadDocenteResource extends Resource
     protected static ?string $model = ActividadDocente::class;
 
     protected static ?string $modelLabel = 'Actividad del Docente';
+
     protected static ?string $pluralModelLabel = 'Actividades del Docente';
 
     protected static ?string $navigationLabel = 'Mis Actividades';
+
     protected static string|null|\UnitEnum $navigationGroup = 'Gestión Académica';
 
     protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-clipboard-document';

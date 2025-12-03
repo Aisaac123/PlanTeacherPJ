@@ -11,20 +11,21 @@ use App\Models\ActividadComplementaria;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
 class ActividadComplementariaResource extends Resource
 {
     protected static ?string $model = ActividadComplementaria::class;
+
     protected static ?string $modelLabel = 'Actividad Complementaria';
+
     protected static ?string $pluralModelLabel = 'Actividades Complementarias';
 
     protected static ?string $navigationLabel = 'Actividades Complementarias';
+
     protected static string|null|\UnitEnum $navigationGroup = 'Gestión Académica';
 
     protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-queue-list';
-
 
     protected static ?string $recordTitleAttribute = 'Actividades Complementarias';
 
