@@ -13,4 +13,8 @@ class CreateActividadDocente extends CreateRecord
     {
         return 'Registrar Actividad del Docente';
     }
+    public static function getNavigationLabel(): string
+    {
+        return 'Registrar ' . static::$resource::getModelLabel();
+    }
 }

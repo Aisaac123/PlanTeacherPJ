@@ -13,4 +13,8 @@ class CreateAsignatura extends CreateRecord
     {
         return 'Crear Asignatura';
     }
+    public static function getNavigationLabel(): string
+    {
+        return 'Registrar ' . static::$resource::getModelLabel();
+    }
 }

@@ -17,7 +17,7 @@ class TutoriaResource extends Resource
 {
     protected static ?string $model = Tutoria::class;
 
-    protected static ?string $modelLabel = 'Tutoria';
+    protected static ?string $modelLabel = 'Tutoría';
 
     protected static ?string $pluralModelLabel = 'Tutorías';
 

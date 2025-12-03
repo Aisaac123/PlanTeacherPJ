@@ -30,6 +30,7 @@ class AppPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->globalSearch(false)
             ->id('app')
             ->path('app')
             ->login()

@@ -21,4 +21,8 @@ class ListAsignaturas extends ListRecords
     {
         return 'Asignaturas';
     }
+    public static function getNavigationLabel(): string
+    {
+        return 'Listado de ' . static::$resource::getPluralModelLabel();
+    }
 }

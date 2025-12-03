@@ -21,4 +21,8 @@ class ListAsistencias extends ListRecords
     {
         return 'Asistencias';
     }
+    public static function getNavigationLabel(): string
+    {
+        return 'Listado de ' . static::$resource::getPluralModelLabel();
+    }
 }

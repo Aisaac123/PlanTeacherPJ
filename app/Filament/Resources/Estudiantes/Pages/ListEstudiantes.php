@@ -21,4 +21,9 @@ class ListEstudiantes extends ListRecords
     {
         return 'Estudiantes';
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Listado de ' . static::$resource::getPluralModelLabel();
+    }
 }

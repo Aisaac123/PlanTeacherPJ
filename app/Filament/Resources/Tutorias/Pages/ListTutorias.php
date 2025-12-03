@@ -21,4 +21,8 @@ class ListTutorias extends ListRecords
     {
         return 'Tutorías';
     }
+    public static function getNavigationLabel(): string
+    {
+        return 'Listado de ' . static::$resource::getPluralModelLabel();
+    }
 }

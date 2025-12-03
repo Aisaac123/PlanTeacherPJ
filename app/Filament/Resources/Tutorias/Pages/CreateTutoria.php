@@ -13,4 +13,8 @@ class CreateTutoria extends CreateRecord
     {
         return 'Registrar Tutoría';
     }
+    public static function getNavigationLabel(): string
+    {
+        return 'Registrar ' . static::$resource::getModelLabel();
+    }
 }
