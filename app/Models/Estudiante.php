@@ -19,9 +19,10 @@ class Estudiante extends Model
        Relaciones
     -------------------------------*/
 
-    public function asignatura()
+    public function asignaturas(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(Asignatura::class);
+        return $this->belongsToMany(Asignatura::class, 'asignatura_estudiante')
+            ->withTimestamps();
     }
 
     public function detalleAsistencias()
@@ -29,20 +30,4 @@ class Estudiante extends Model
         return $this->hasMany(DetalleAsistencia::class);
     }
 
-    /* ------------------------------
-       Eventos
-    -------------------------------*/
-
-    protected static function booted()
-    {
-        static::created(function ($estudiante) {
-            $actividad = $estudiante->asignatura->actividadDocente;
-
-            $actividad->total_estudiantes = Estudiante::whereHas('asignatura', function ($q) use ($actividad) {
-                $q->where('actividad_docente_id', $actividad->id);
-            })->count();
-
-            $actividad->save();
-        });
-    }
 }

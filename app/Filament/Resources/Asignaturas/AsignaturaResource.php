@@ -21,6 +21,7 @@ class AsignaturaResource extends Resource
     protected static ?string $model = Asignatura::class;
 
     protected static ?string $modelLabel = 'Asignatura';
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $pluralModelLabel = 'Asignaturas';
 

@@ -10,7 +10,7 @@ class ArchivosDocente extends Page
 
     protected static ?string $navigationLabel = 'Archivos del Docente';
 
-    protected static ?int $navigationSort = 3; // <-- orden en la navegación
+    protected static ?int $navigationSort = 4; // <-- orden en la navegación
 
     protected static string|null|\UnitEnum $navigationGroup = 'Gestión Académica';
 

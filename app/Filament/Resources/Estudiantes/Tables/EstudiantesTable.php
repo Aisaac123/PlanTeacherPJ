@@ -14,20 +14,25 @@ class EstudiantesTable
     {
         return $table
             ->columns([
-                TextColumn::make('asignatura_id')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('codigo')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('nombre_completo')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('correo')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+
+                TextColumn::make('asignaturas_count')
+                    ->counts('asignaturas')
+                    ->label('Asignaturas')
+                    ->badge()
+                    ->color('success'),
+
                 TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -38,6 +43,7 @@ class EstudiantesTable
             ->recordActions([
                 EditAction::make(),
             ])
+
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Asignatura extends Model
 {
@@ -34,9 +35,10 @@ class Asignatura extends Model
         return $this->belongsTo(ActividadDocente::class);
     }
 
-    public function estudiantes()
+    public function estudiantes(): BelongsToMany
     {
-        return $this->hasMany(Estudiante::class);
+        return $this->belongsToMany(Estudiante::class, 'asignatura_estudiante')
+            ->withTimestamps();
     }
 
     public function asistencias()

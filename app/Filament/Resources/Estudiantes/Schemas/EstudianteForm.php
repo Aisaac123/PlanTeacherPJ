@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Estudiantes\Schemas;
 
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -11,22 +12,28 @@ class EstudianteForm
     {
         return $schema
             ->components([
-                TextInput::make('asignatura_id')
-                    ->label('ID de la asignatura')
-                    ->required()
-                    ->numeric(),
-
                 TextInput::make('codigo')
-                    ->label('ID del estudiante')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->maxLength(255),
 
                 TextInput::make('nombre_completo')
-                    ->label('Apellidos y nombres del estudiante')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
 
                 TextInput::make('correo')
-                    ->label('Correo institucional del estudiante')
-                    ->required(),
+                    ->email()
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->maxLength(255),
+
+                Select::make('asignaturas')
+                    ->relationship('asignaturas', 'nombre')
+                    ->multiple()
+                    ->preload()
+                    ->searchable()
+                    ->optionsLimit(50)
+                    ->label('Asignaturas'),
             ]);
     }
 }
