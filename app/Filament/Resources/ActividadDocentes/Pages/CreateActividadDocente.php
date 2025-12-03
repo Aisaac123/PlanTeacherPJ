@@ -13,8 +13,29 @@ class CreateActividadDocente extends CreateRecord
     {
         return 'Registrar Actividad del Docente';
     }
+
     public static function getNavigationLabel(): string
     {
-        return 'Registrar ' . static::$resource::getModelLabel();
+        return 'Registrar '.static::$resource::getModelLabel();
+    }
+
+    public function mount(): void
+    {
+        $user = auth()->user();
+
+        if ($user && $user->actividadDocente) {
+            $this->redirect(
+                ActividadDocenteResource::getUrl('edit', [
+                    'record' => $user->actividadDocente->id,
+                ])
+            );
+        }
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['user_id'] = auth()->id();
+
+        return $data;
     }
 }

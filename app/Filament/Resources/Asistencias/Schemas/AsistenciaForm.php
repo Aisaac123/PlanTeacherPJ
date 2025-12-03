@@ -14,11 +14,16 @@ class AsistenciaForm
         return $schema
             ->components([
                 TextInput::make('asignatura_id')
+                    ->label('ID de la asignatura')
                     ->required()
                     ->numeric(),
+
                 DatePicker::make('fecha')
+                    ->label('Fecha de la asistencia')
                     ->required(),
+
                 Toggle::make('finalizada')
+                    ->label('Asistencia finalizada')
                     ->required(),
             ]);
     }

@@ -38,7 +38,7 @@ class AsignaturaResource extends Resource
             return false;
         }
 
-        return $user->actividadesDocentes()->exists();
+        return $user->actividadDocente()->exists();
     }
 
     protected static ?string $recordTitleAttribute = 'Asignaturas';
@@ -69,5 +69,32 @@ class AsignaturaResource extends Resource
             'create' => CreateAsignatura::route('/create'),
             'edit' => EditAsignatura::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        $user = auth()->user();
+        $asignaturasHours = $user->asignaturas()->sum('horas_practicas')
+            + $user->asignaturas()->sum('horas_teoricas');
+        $userHoursLimit = $user->actividadDocente->horas_docencia_directa;
+        if ($asignaturasHours >= $userHoursLimit) {
+            return false;
+        }
+
+        $estudiantesLimit = $user->actividadDocente->total_estudiantes;
+        $asignaturasEstudiantesCount = $user->asignaturas()->sum('limite_estudiantes');
+
+        if ($asignaturasEstudiantesCount >= $estudiantesLimit) {
+            return false;
+        }
+
+        $asignaturasLimit = $user->actividadDocente->max_asignaturas;
+        $asignaturasCount = $user->asignaturas()->count();
+
+        if ($asignaturasCount >= $asignaturasLimit) {
+            return false;
+        }
+
+        return true;
     }
 }

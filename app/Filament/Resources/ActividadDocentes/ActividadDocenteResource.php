@@ -4,7 +4,6 @@ namespace App\Filament\Resources\ActividadDocentes;
 
 use App\Filament\Resources\ActividadDocentes\Pages\CreateActividadDocente;
 use App\Filament\Resources\ActividadDocentes\Pages\EditActividadDocente;
-use App\Filament\Resources\ActividadDocentes\Pages\ListActividadDocentes;
 use App\Filament\Resources\ActividadDocentes\Schemas\ActividadDocenteForm;
 use App\Filament\Resources\ActividadDocentes\Tables\ActividadDocentesTable;
 use App\Models\ActividadDocente;
@@ -22,6 +21,8 @@ class ActividadDocenteResource extends Resource
     protected static ?string $pluralModelLabel = 'Actividades del Docente';
 
     protected static ?string $navigationLabel = 'Mis Actividades';
+
+    protected static ?int $navigationSort = 1; // <-- orden en la navegación
 
     protected static string|null|\UnitEnum $navigationGroup = 'Gestión Académica';
 
@@ -49,9 +50,20 @@ class ActividadDocenteResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListActividadDocentes::route('/'),
+            'index' => CreateActividadDocente::route('/'),
             'create' => CreateActividadDocente::route('/create'),
             'edit' => EditActividadDocente::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        $user = auth()->user();
+        if (! $user) {
+            return false;
+        }
+
+        // Solo permitir crear si el usuario NO tiene ya una actividad docente
+        return ! (bool) $user->actividadDocente()->exists();
     }
 }

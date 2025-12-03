@@ -21,8 +21,9 @@ class ListActividadDocentes extends ListRecords
             CreateAction::make(),
         ];
     }
+
     public static function getNavigationLabel(): string
     {
-        return 'Listado de ' . static::$resource::getPluralModelLabel();
+        return 'Listado de '.static::$resource::getPluralModelLabel();
     }
 }

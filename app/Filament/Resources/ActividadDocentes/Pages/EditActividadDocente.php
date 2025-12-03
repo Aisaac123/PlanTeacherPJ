@@ -26,4 +26,11 @@ class EditActividadDocente extends EditRecord
     {
         return 'Editar Actividad del Docente';
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['user_id'] = auth()->id();
+
+        return $data;
+    }
 }

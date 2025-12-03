@@ -49,17 +49,32 @@ class User extends Authenticatable
     /**
      * Actividades docentes del profesor.
      */
-    public function actividadesDocentes(): HasMany
+    public function actividadDocente(): User|\Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasMany(ActividadDocente::class, 'user_id');
+        return $this->hasOne(ActividadDocente::class, 'user_id');
+    }
+
+    /**
+     * Actividad complementaria (1:1).
+     */
+    public function actividadComplementaria(): User|\Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(ActividadComplementaria::class, 'user_id');
     }
 
     /**
      * Asignaturas dictadas por el docente.
      */
-    public function asignaturas(): HasMany
+    public function asignaturas(): \Illuminate\Database\Eloquent\Relations\HasManyThrough|User
     {
-        return $this->hasMany(Asignatura::class, 'user_id');
+        return $this->hasManyThrough(
+            Asignatura::class,
+            ActividadDocente::class,
+            'user_id',
+            'actividad_docente_id',
+            'id',
+            'id'
+        );
     }
 
     /**

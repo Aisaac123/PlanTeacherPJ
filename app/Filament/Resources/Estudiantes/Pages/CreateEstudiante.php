@@ -16,6 +16,6 @@ class CreateEstudiante extends CreateRecord
 
     public static function getNavigationLabel(): string
     {
-        return 'Registrar ' . static::$resource::getModelLabel();
+        return 'Registrar '.static::$resource::getModelLabel();
     }
 }

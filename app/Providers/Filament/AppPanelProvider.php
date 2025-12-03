@@ -31,6 +31,13 @@ class AppPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->globalSearch(false)
+            ->navigationGroups([
+                'Gestión Académica',
+                'Académico',
+                'Seguimiento',
+            ])
+            ->sidebarCollapsibleOnDesktop()
+            ->collapsedSidebarWidth('1rem')
             ->id('app')
             ->path('app')
             ->login()

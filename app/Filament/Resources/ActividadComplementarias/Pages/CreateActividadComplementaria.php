@@ -11,6 +11,26 @@ class CreateActividadComplementaria extends CreateRecord
 
     public static function getNavigationLabel(): string
     {
-        return 'Registrar ' . static::$resource::getModelLabel();
+        return 'Registrar '.static::$resource::getModelLabel();
+    }
+
+    public function mount(): void
+    {
+        $user = auth()->user();
+
+        if ($user && $user->actividadComplementaria) {
+            $this->redirect(
+                ActividadComplementariaResource::getUrl('edit', [
+                    'record' => $user->actividadComplementaria->id,
+                ])
+            );
+        }
+    }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['user_id'] = auth()->id();
+
+        return $data;
     }
 }

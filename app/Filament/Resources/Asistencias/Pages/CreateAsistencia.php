@@ -13,8 +13,9 @@ class CreateAsistencia extends CreateRecord
     {
         return 'Registrar Asistencia';
     }
+
     public static function getNavigationLabel(): string
     {
-        return 'Registrar ' . static::$resource::getModelLabel();
+        return 'Registrar '.static::$resource::getModelLabel();
     }
 }

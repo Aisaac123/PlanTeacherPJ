@@ -10,3 +10,10 @@
 .fi-simple-header {
     align-items: center;
 }
+
+.fi-sidebar-nav {
+    @apply text-gray-200 dark:text-gray-700 bg-white dark:bg-gray-900;
+}
+
+
+

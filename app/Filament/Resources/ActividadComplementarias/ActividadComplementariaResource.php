@@ -4,7 +4,6 @@ namespace App\Filament\Resources\ActividadComplementarias;
 
 use App\Filament\Resources\ActividadComplementarias\Pages\CreateActividadComplementaria;
 use App\Filament\Resources\ActividadComplementarias\Pages\EditActividadComplementaria;
-use App\Filament\Resources\ActividadComplementarias\Pages\ListActividadComplementarias;
 use App\Filament\Resources\ActividadComplementarias\Schemas\ActividadComplementariaForm;
 use App\Filament\Resources\ActividadComplementarias\Tables\ActividadComplementariasTable;
 use App\Models\ActividadComplementaria;
@@ -15,6 +14,18 @@ use Filament\Tables\Table;
 
 class ActividadComplementariaResource extends Resource
 {
+    protected function mount(): void
+    {
+        parent::mount();
+
+        $user = auth()->user();
+        if ($user && $user->actividadComplementaria()->exists()) {
+            $record = $user->actividadComplementaria()->first();
+            // Redirige a la página de edición del registro existente
+            redirect(ActividadComplementariaResource::getUrl('edit', ['record' => $record->getKey()]));
+        }
+    }
+
     protected static ?string $model = ActividadComplementaria::class;
 
     protected static ?string $modelLabel = 'Actividad Complementaria';
@@ -22,6 +33,8 @@ class ActividadComplementariaResource extends Resource
     protected static ?string $pluralModelLabel = 'Actividades Complementarias';
 
     protected static ?string $navigationLabel = 'Actividades Complementarias';
+
+    protected static ?int $navigationSort = 2; // <-- orden en la navegación
 
     protected static string|null|\UnitEnum $navigationGroup = 'Gestión Académica';
 
@@ -49,9 +62,20 @@ class ActividadComplementariaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListActividadComplementarias::route('/'),
+            'index' => CreateActividadComplementaria::route('/'),
             'create' => CreateActividadComplementaria::route('/create'),
             'edit' => EditActividadComplementaria::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        $user = auth()->user();
+        if (! $user) {
+            return false;
+        }
+
+        // Solo permitir crear si el usuario NO tiene ya una actividad docente
+        return ! (bool) $user->actividadComplementaria()->exists();
     }
 }
