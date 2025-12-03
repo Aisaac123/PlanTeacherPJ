@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asignatura extends Model
 {
+    protected $table = 'asignaturas';
     protected $fillable = [
         'actividad_docente_id',
         'codigo',

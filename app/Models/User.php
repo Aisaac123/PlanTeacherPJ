@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
+
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
+     * Atributos asignables en masa.
      */
     protected $fillable = [
         'name',
@@ -24,9 +23,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
+     * Atributos ocultos.
      */
     protected $hidden = [
         'password',
@@ -34,9 +31,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Casts modernos.
      */
     protected function casts(): array
     {
@@ -44,5 +39,50 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /* -----------------------------------------------------------
+     |  RELACIONES DOCENTE ↔ SISTEMA ACADÉMICO
+     |-----------------------------------------------------------
+     */
+
+    /**
+     * Actividades docentes del profesor.
+     */
+    public function actividadesDocentes(): HasMany
+    {
+        return $this->hasMany(ActividadDocente::class, 'user_id');
+    }
+
+    /**
+     * Asignaturas dictadas por el docente.
+     */
+    public function asignaturas(): HasMany
+    {
+        return $this->hasMany(Asignatura::class, 'user_id');
+    }
+
+    /**
+     * Estudiantes asignados al docente.
+     */
+    public function estudiantes(): HasMany
+    {
+        return $this->hasMany(Estudiante::class, 'user_id');
+    }
+
+    /**
+     * Asistencias registradas por el docente.
+     */
+    public function asistencias(): HasMany
+    {
+        return $this->hasMany(Asistencia::class, 'user_id');
+    }
+
+    /**
+     * Tutorías realizadas por el docente.
+     */
+    public function tutorias(): HasMany
+    {
+        return $this->hasMany(Tutoria::class, 'user_id');
     }
 }

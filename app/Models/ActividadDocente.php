@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActividadDocente extends Model
 {
+    protected $table = 'actividades_docente';
     protected $fillable = [
         'user_id',
         'total_asignaturas',

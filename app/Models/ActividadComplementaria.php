@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActividadComplementaria extends Model
 {
+    protected $table = 'actividades_complementarias';
     protected $fillable = [
         'user_id',
         'horas_trabajos_grado',

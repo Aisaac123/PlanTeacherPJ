@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tutoria extends Model
 {
+    protected $table = 'tutorias';
     protected $fillable = [
         'asignatura_id',
         'fecha',
