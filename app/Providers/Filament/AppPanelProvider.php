@@ -33,6 +33,9 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
             ->brandLogoHeight('72px')
             ->favicon(asset('assets/favicon.ico'))
             ->brandLogo(fn () => view('filament.brand-logo'))
@@ -43,9 +46,25 @@ class AppPanelProvider extends PanelProvider
                 AuthDesignerPlugin::make()
                     ->login(
                         layout: AuthLayout::Panel,
-                        media: asset('assets/login.png'),
-                        direction: MediaDirection::Left // or MediaDirection::Left
-                    )->themeToggle()]
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left, // or MediaDirection::Left
+                    )
+                    ->registration(
+                        layout: AuthLayout::Panel,
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left, // or MediaDirection::Left
+                    )
+                    ->passwordReset(
+                        layout: AuthLayout::Panel,
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left, // or MediaDirection::Left
+                    )
+                    ->emailVerification(
+                        layout: AuthLayout::Panel,
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left, // or MediaDirection::Left
+                    )
+                    ->themeToggle()]
             )
             ->colors([
                 'primary' => Color::Teal[950],

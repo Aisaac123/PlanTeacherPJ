@@ -5,3 +5,8 @@
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 @source '../../../../vendor/wire-elements/**/*.blade.php';
+
+
+.fi-simple-header {
+    align-items: center;
+}
