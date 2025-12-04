@@ -8,12 +8,12 @@ RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/c
 # Verificar versión (debería ser 22.x)
 RUN node --version && npm --version
 
-# Instalar dependencias de Composer
+# Instalar dependencias de Composer PRIMERO (para tener vendor/)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Publicar assets de Livewire y Filament
-RUN php artisan livewire:publish --assets && \
-    php artisan filament:assets
+# Publicar assets de Filament y Livewire
+RUN php artisan filament:assets
+RUN php artisan livewire:publish --assets
 
 # Instalar dependencias npm
 RUN cd /var/www/html && npm ci
@@ -21,9 +21,8 @@ RUN cd /var/www/html && npm ci
 # Compilar assets
 RUN cd /var/www/html && npm run build
 
-# Verificar build
-RUN ls -la /var/www/html/public/build/ && \
-    ls -la /var/www/html/public/livewire/
+# Verificar que se creó el build
+RUN ls -la /var/www/html/public/build/ || echo "Build directory not found"
 
 # Crear configuración de PHP-FPM
 RUN printf "[www]\n\
@@ -51,10 +50,6 @@ ENV REAL_IP_HEADER 1
 ENV APP_ENV production
 ENV APP_DEBUG false
 ENV LOG_CHANNEL stderr
-
-# FORZAR HTTPS
-ENV ASSET_URL https://planteacherpj.onrender.com
-ENV APP_URL https://planteacherpj.onrender.com
 
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
