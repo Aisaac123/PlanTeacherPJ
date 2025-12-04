@@ -6,7 +6,6 @@ use Andreia\FilamentUiSwitcher\FilamentUiSwitcherPlugin;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Caresome\FilamentAuthDesigner\Enums\AuthLayout;
 use Caresome\FilamentAuthDesigner\Enums\MediaDirection;
-use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -14,7 +13,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -73,31 +71,31 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                    FilamentUiSwitcherPlugin::make()
+                FilamentUiSwitcherPlugin::make()
                     ->withModeSwitcher(true),
-                    SpotlightPlugin::make(),
-                    AuthDesignerPlugin::make()
-                        ->login(
-                            layout: AuthLayout::Panel,
-                            media: asset('assets/loginVideo.mp4'),
-                            direction: MediaDirection::Left,
-                        )
-                        ->registration(
-                            layout: AuthLayout::Panel,
-                            media: asset('assets/loginVideo.mp4'),
-                            direction: MediaDirection::Left,
-                        )
-                        ->passwordReset(
-                            layout: AuthLayout::Panel,
-                            media: asset('assets/loginVideo.mp4'),
-                            direction: MediaDirection::Left
-                        )
-                        ->emailVerification(
-                            layout: AuthLayout::Panel,
-                            media: asset('assets/loginVideo.mp4'),
-                            direction: MediaDirection::Left
-                        )
-                        ->themeToggle()]
+                SpotlightPlugin::make(),
+                AuthDesignerPlugin::make()
+                    ->login(
+                        layout: AuthLayout::Panel,
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left,
+                    )
+                    ->registration(
+                        layout: AuthLayout::Panel,
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left,
+                    )
+                    ->passwordReset(
+                        layout: AuthLayout::Panel,
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left
+                    )
+                    ->emailVerification(
+                        layout: AuthLayout::Panel,
+                        media: asset('assets/loginVideo.mp4'),
+                        direction: MediaDirection::Left
+                    )
+                    ->themeToggle()]
             );
     }
 }
