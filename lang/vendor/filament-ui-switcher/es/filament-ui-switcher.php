@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'button.aria_label' => 'Interfaz',
+    'button.aria_label' => 'Interfaz de usuario',
 
-    'modal.heading' => 'Configuraciones',
+    'modal.heading' => 'Configurar Interfaz',
 
     'loading.message' => 'Aplicando cambios...',
 
-    'mode.heading' => 'Modo',
+    'mode.heading' => 'Tema',
 
     'layout.heading' => 'Diseño',
     'layout.sidebar' => 'Barra lateral',

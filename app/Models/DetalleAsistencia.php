@@ -22,12 +22,12 @@ class DetalleAsistencia extends Model
        Relaciones
     -------------------------------*/
 
-    public function asistencia()
+    public function asistencia(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Asistencia::class);
     }
 
-    public function estudiante()
+    public function estudiante(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Estudiante::class);
     }

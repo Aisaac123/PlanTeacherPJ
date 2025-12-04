@@ -12,6 +12,8 @@ class Asistencia extends Model
         'asignatura_id',
         'fecha',
         'finalizada',
+        'estudiante_id',
+        'asistio',
     ];
 
     protected $casts = [

@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Asistencias;
 use App\Filament\Resources\Asistencias\Pages\CreateAsistencia;
 use App\Filament\Resources\Asistencias\Pages\EditAsistencia;
 use App\Filament\Resources\Asistencias\Pages\ListAsistencias;
+use App\Filament\Resources\Asistencias\RelationManagers\DetallesRelationManager;
 use App\Filament\Resources\Asistencias\Schemas\AsistenciaForm;
 use App\Filament\Resources\Asistencias\Tables\AsistenciasTable;
 use App\Models\Asistencia;
@@ -42,7 +43,7 @@ class AsistenciaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            DetallesRelationManager::class,
         ];
     }
 
