@@ -8,8 +8,14 @@ WORKDIR /var/www/html
 # Cambiar a root para instalar dependencias
 USER root
 
+# Crear .env si no existe (Composer lo necesita para algunos paquetes de Laravel)
+RUN if [ ! -f .env ]; then cp .env.example .env; fi || touch .env
+
 # Instalar dependencias de Composer
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+
+# Generar key si no existe
+RUN php artisan key:generate --force || true
 
 # Crear script de deployment inline
 RUN echo '#!/bin/sh\n\
@@ -19,6 +25,9 @@ php artisan route:cache\n\
 php artisan migrate --force\n\
 echo "✅ Deployment complete!"' > /etc/entrypoint.d/00-laravel-deploy.sh && \
     chmod +x /etc/entrypoint.d/00-laravel-deploy.sh
+
+# Dar permisos correctos
+RUN chown -R www-data:www-data /var/www/html
 
 # Volver al usuario www-data
 USER www-data
