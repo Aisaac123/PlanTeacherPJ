@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources\PlanTrabajos;
 
-use App\Filament\Resources\PlanTrabajos\Pages\ManagePlanTrabajos;
 use App\Models\PlanTrabajo;
 use Filament\Forms;
-use Filament\Resources\Resource;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 
 class PlanTrabajoResource extends Resource
@@ -67,10 +66,10 @@ class PlanTrabajoResource extends Resource
     {
         $user = auth()->user();
 
-        if (!$user) {
+        if (! $user) {
             return false;
         }
 
-        return !$user->planTrabajo()->exists();
+        return ! $user->planTrabajo()->exists();
     }
 }

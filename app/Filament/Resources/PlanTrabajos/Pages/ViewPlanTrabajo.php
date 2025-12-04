@@ -22,6 +22,7 @@ class ViewPlanTrabajo extends Page implements HasForms
     protected string $view = 'filament.resources.plan-trabajos.pages.view-plan-trabajo';
 
     public ?PlanTrabajo $planTrabajo = null;
+
     public ?array $data = [];
 
     public function mount(): void

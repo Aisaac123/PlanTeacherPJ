@@ -29,5 +29,4 @@ class Estudiante extends Model
     {
         return $this->hasMany(DetalleAsistencia::class);
     }
-
 }
