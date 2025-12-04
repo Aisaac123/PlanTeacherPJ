@@ -2,13 +2,10 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . .
 
-# Actualizar repositorios a edge para obtener Node 22
-RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    apk update && \
-    apk add --no-cache nodejs npm
+# Instalar Node.js 22 desde edge/community
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community nodejs npm
 
-# Verificar versión
+# Verificar versión (debería ser 22.x)
 RUN node --version && npm --version
 
 # Instalar dependencias de Composer
