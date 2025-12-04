@@ -2,6 +2,20 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . .
 
+# Crear configuración de PHP-FPM inline
+RUN echo '[www]\n\
+user = nginx\n\
+group = nginx\n\
+listen = /var/run/php-fpm.sock\n\
+listen.owner = nginx\n\
+listen.group = nginx\n\
+pm = dynamic\n\
+pm.max_children = 20\n\
+pm.start_servers = 5\n\
+pm.min_spare_servers = 3\n\
+pm.max_spare_servers = 10\n\
+pm.max_requests = 500' > /usr/local/etc/php-fpm.d/www.conf
+
 # Image config
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html/public
@@ -14,14 +28,11 @@ ENV APP_ENV production
 ENV APP_DEBUG true
 ENV LOG_CHANNEL stderr
 
-# Aumentar límite de memoria PHP
-ENV PHP_MEMORY_LIMIT 512M
-ENV COMPOSER_MEMORY_LIMIT -1
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# Aumentar workers de PHP-FPM
-ENV PHP_FPM_PM_MAX_CHILDREN 20
-ENV PHP_FPM_PM_START_SERVERS 4
-ENV PHP_FPM_PM_MIN_SPARE_SERVERS 2
-ENV PHP_FPM_PM_MAX_SPARE_SERVERS 10
+# Aumentar límite de memoria
+ENV COMPOSER_MEMORY_LIMIT -1
+ENV PHP_MEMORY_LIMIT 512M
 
 CMD ["/start.sh"]
