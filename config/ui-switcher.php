@@ -2,22 +2,10 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Storage Driver
-    |--------------------------------------------------------------------------
-    */
     'driver' => env('UI_SWITCHER_DRIVER', 'session'),
 
     'database_column' => 'ui_preferences',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Default Preferences
-    |--------------------------------------------------------------------------
-    | Fuente por defecto: Quicksand
-    | Color por defecto: Teal 950 (#042f2e)
-    */
     'defaults' => [
         'font' => 'Quicksand',
         'color' => '#042f2e', // teal 950
@@ -30,11 +18,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Available Fonts
+    | Available Google Fonts (TODAS admitidas)
     |--------------------------------------------------------------------------
-    | Todas correctamente disponibles en Google Fonts.
     */
     'fonts' => [
+        // Ya tenías estas:
         'Quicksand',
         'Inter',
         'Poppins',
@@ -48,66 +36,102 @@ return [
         'Rubik',
         'Source Sans Pro',
         'Plus Jakarta Sans',
+
+        // 🔥 NUEVAS, TODAS EN GOOGLE FONTS Y MUY DISTINTAS ENTRE SÍ
+
+        // Geométricas modernas
+        'Manrope',
+        'Sora',
+        'Epilogue',
+        'Figtree',
+        'Urbanist',
+
+        // Sans serif profesionales
+        'Mulish',
+        'Karla',
+        'Barlow',
+        'Red Hat Display',
+        'IBM Plex Sans',
+
+        // Monoespaciadas para estilo técnico
+        'Fira Code',
+        'JetBrains Mono',
+
+        // Serif elegantes (alternativas totalmente diferentes)
+        'Merriweather',
+        'Lora',
+        'Playfair Display',
+
+        // Display para títulos llamativos
+        'Bebas Neue',
+        'Anton',
+        'Oswald',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Custom Colors
-    |--------------------------------------------------------------------------
-    | Paleta extendida → incluye TODOS los tonos teal + primarios agradables.
-    */
     'custom_colors' => [
 
-        // 🌊 Teal (completa)
-        '#f0fdfa', '#ccfbf1', '#99f6e4', '#5eead4',
-        '#2dd4bf', '#14b8a6', '#0d9488', '#0f766e',
-        '#115e59', '#134e4a', '#042f2e', // teal 950
+        // Obligatorios
+        '#ffffff', // Blanco
+        '#000000', // Negro
+        '#808080', // Gris
+        '#042f2e', // Teal único (teal-600, pero ÚNICO, no gama)
 
-        // 🔵 Blue
-        '#dbeafe', '#93c5fd', '#60a5fa', '#3b82f6',
-        '#2563eb', '#1d4ed8', '#1e40af',
+        // Colores sueltos (TODOS distintos)
+        '#ff6b6b',
+        '#ee6055',
+        '#d90429',
+        '#f07167',
+        '#f4a261',
+        '#e76f51',
+        '#ff9f1c',
+        '#ffbf00',
+        '#ffd60a',
+        '#e9d8a6',
+        '#bc6c25',
+        '#7f5539',
+        '#6f1d1b',
+        '#9d0208',
+        '#7209b7',
+        '#8338ec',
+        '#5a189a',
+        '#3a0ca3',
+        '#4361ee',
+        '#3f37c9',
+        '#1d3557',
+        '#457b9d',
+        '#1e3a8a',
+        '#0d3b66',
+        '#4cc9f0',
+        '#0096c7',
+        '#48cae4',
+        '#2a9d8f',
+        '#16a34a',
+        '#386641',
+        '#2b9348',
+        '#b5e48c',
+        '#ffcad4',
+        '#b5838d',
+        '#6c757d',
+        '#adb5bd',
+        '#343a40',
+        '#22223b',
+        '#4a4e69',
+        '#9a8c98',
+        '#c9ada7',
 
-        // 🟣 Violet
-        '#ede9fe', '#c4b5fd', '#a78bfa', '#8b5cf6',
-        '#7c3aed', '#6d28d9',
-
-        // 🟢 Green
-        '#dcfce7', '#86efac', '#4ade80', '#22c55e',
-        '#16a34a', '#15803d',
-
-        // 🟡 Amber
-        '#fef9c3', '#fde047', '#facc15', '#eab308',
-
-        // 🟠 Orange
-        '#ffedd5', '#fdba74', '#fb923c', '#f97316',
-        '#ea580c',
-
-        // 🔴 Red
-        '#fee2e2', '#fca5a5', '#ef4444', '#dc2626',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Available Layouts
-    |--------------------------------------------------------------------------
-    | Agrego variantes extra modernas.
-    */
+
     'layouts' => [
         'sidebar',
         'sidebar-collapsed',
         'sidebar-no-topbar',
         'topbar',
-        'minimal',             // limpio, sin bordes
-        'compact-sidebar',     // más estrecho
-        'split',               // sidebar + topbar juntos
+        'minimal',
+        'compact-sidebar',
+        'split',
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Font Size Range
-    |--------------------------------------------------------------------------
-    | Más rango para accesibilidad.
-    */
     'font_size_range' => [
         'min' => 10,
         'max' => 24,

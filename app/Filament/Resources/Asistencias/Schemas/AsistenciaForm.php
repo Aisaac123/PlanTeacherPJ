@@ -28,6 +28,24 @@ class AsistenciaForm
 
                         DatePicker::make('fecha')
                             ->label('Fecha de la asistencia')
+                            ->rules([
+                                function () {
+                                    return function (string $attribute, $value, \Closure $fail) {
+                                        $asignaturaId = request()->input('data.asignatura_id');
+
+                                        if ($asignaturaId && $value) {
+                                            $exists = \App\Models\Asistencia::query()
+                                                ->whereDate('fecha', $value)
+                                                ->where('asignatura_id', $asignaturaId)
+                                                ->exists();
+
+                                            if ($exists) {
+                                                $fail('Ya existe una asistencia registrada para esta fecha y asignatura.');
+                                            }
+                                        }
+                                    };
+                                },
+                            ])
                             ->required()
                             ->default(now())
                             ->disabled(fn ($record) => $record?->finalizada),

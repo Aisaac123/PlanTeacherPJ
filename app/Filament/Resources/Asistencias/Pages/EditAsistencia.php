@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Asistencias\Pages;
 use App\Filament\Resources\Asistencias\AsistenciaResource;
 use Filament\Actions\Action;
 use Filament\Actions\DeleteAction;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -29,11 +30,6 @@ class EditAsistencia extends EditRecord
         $this->form->fill();
     }
 
-    protected function mutateFormDataBeforeSave(array $data): array
-    {
-        // Si finalizas la asistencia, ya no se puede editar
-        return $data;
-    }
     public function getTitle(): string
     {
         return 'Editar Asistencia';
@@ -49,4 +45,28 @@ class EditAsistencia extends EditRecord
         return parent::getSaveFormAction()
             ->disabled(fn () => $this->record->finalizada);
     }
+
+    protected function beforeSave(): void
+    {
+        $data = $this->form->getState();
+        $fecha = $data['fecha'] ?? null;
+        $asignatura = $this->record->asignatura_id ?? null;
+        if ($fecha && $asignatura) {
+            $exists = static::$resource::getModel()::query()
+                ->whereDate('fecha', $fecha)
+                ->where('asignatura_id', $asignatura)
+                ->where('id', '!=', $this->record->id)
+                ->exists();
+
+            if ($exists) {
+                Notification::make()
+                    ->title('Ya existe una asistencia con esta fecha y esta asignatura.')
+                    ->danger()
+                    ->send();
+
+                $this->halt();
+            }
+        }
+    }
+
 }
