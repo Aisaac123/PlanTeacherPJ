@@ -6,6 +6,7 @@ use App\Models\Asistencia;
 use App\Models\Tutoria;
 use App\Observers\AsistenciaObserver;
 use App\Observers\TutoriaObserver;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,9 +22,13 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
         Asistencia::observe(AsistenciaObserver::class);
         Tutoria::observe(TutoriaObserver::class);
+
+        if (env('APP_ENV') == 'production') {
+            $url->forceScheme('https');
+        }
     }
 }
