@@ -2,13 +2,20 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . .
 
-# Instalar Node.js en Alpine y compilar assets
-RUN apk add --no-cache nodejs npm && \
-    cd /var/www/html && \
-    npm ci && \
-    npm run build && \
-    echo "Build directory contents:" && \
-    ls -la /var/www/html/public/build/
+# Instalar Node.js en Alpine
+RUN apk add --no-cache nodejs npm
+
+# Verificar instalación
+RUN node --version && npm --version
+
+# Instalar dependencias npm
+RUN cd /var/www/html && npm ci
+
+# Compilar assets
+RUN cd /var/www/html && npm run build
+
+# Verificar que se creó el build
+RUN ls -la /var/www/html/public/build/ || echo "Build directory not found"
 
 # Crear configuración de PHP-FPM
 RUN printf "[www]\n\
