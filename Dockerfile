@@ -11,7 +11,7 @@ ENV REAL_IP_HEADER 1
 
 # Laravel config
 ENV APP_ENV production
-ENV APP_DEBUG false
+ENV APP_DEBUG true
 ENV LOG_CHANNEL stderr
 
 # Allow composer to run as root
@@ -19,5 +19,11 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # Aumentar límite de memoria PHP
 ENV PHP_MEMORY_LIMIT 512M
+
+# Aumentar workers de PHP-FPM
+ENV PHP_FPM_PM_MAX_CHILDREN 20
+ENV PHP_FPM_PM_START_SERVERS 4
+ENV PHP_FPM_PM_MIN_SPARE_SERVERS 2
+ENV PHP_FPM_PM_MAX_SPARE_SERVERS 10
 
 CMD ["/start.sh"]
