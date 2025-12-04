@@ -69,6 +69,9 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->favicon(asset('assets/logo-dark.png'))
+            ->errorNotifications()
+            ->databaseNotifications() // ← Esta línea es clave
+            ->databaseNotificationsPolling('30s') // Opcional: polling cada 30s
             ->plugins([
                 FilamentUiSwitcherPlugin::make()
                     ->withModeSwitcher(true),

@@ -35,7 +35,7 @@ class ActividadDocente extends Model
 
     public function docente()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function asignaturas()
