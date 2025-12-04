@@ -78,19 +78,19 @@ class AsignaturaResource extends Resource
         $user = auth()->user();
         $asignaturasHours = $user->asignaturas()->sum('horas_practicas')
             + $user->asignaturas()->sum('horas_teoricas');
-        $userHoursLimit = $user->actividadDocente->horas_docencia_directa;
+        $userHoursLimit = $user->actividadDocente?->horas_docencia_directa;
         if ($asignaturasHours >= $userHoursLimit) {
             return false;
         }
 
-        $estudiantesLimit = $user->actividadDocente->total_estudiantes;
+        $estudiantesLimit = $user->actividadDocente?->total_estudiantes;
         $asignaturasEstudiantesCount = $user->asignaturas()->sum('limite_estudiantes');
 
         if ($asignaturasEstudiantesCount >= $estudiantesLimit) {
             return false;
         }
 
-        $asignaturasLimit = $user->actividadDocente->max_asignaturas;
+        $asignaturasLimit = $user->actividadDocente?->max_asignaturas;
         $asignaturasCount = $user->asignaturas()->count();
 
         if ($asignaturasCount >= $asignaturasLimit) {
