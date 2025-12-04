@@ -17,4 +17,7 @@ ENV LOG_CHANNEL stderr
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+# Aumentar límite de memoria PHP
+ENV PHP_MEMORY_LIMIT 512M
+
 CMD ["/start.sh"]
