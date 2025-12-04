@@ -2,11 +2,17 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . .
 
-# Instalar Node.js en Alpine
-RUN apk add --no-cache nodejs npm
+# Instalar Node.js 22 desde edge/community
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community nodejs npm
 
-# Verificar instalación
+# Verificar versión (debería ser 22.x)
 RUN node --version && npm --version
+
+# Instalar dependencias de Composer PRIMERO (para tener vendor/)
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Publicar assets de Filament
+RUN php artisan filament:assets
 
 # Instalar dependencias npm
 RUN cd /var/www/html && npm ci
