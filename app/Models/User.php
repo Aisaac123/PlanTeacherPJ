@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Andreia\FilamentUiSwitcher\Models\Traits\HasUiPreferences;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -11,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+    use HasUiPreferences;
     protected $table = 'users';
 
     /**
@@ -39,6 +40,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'ui_preferences' => 'array',
         ];
     }
 

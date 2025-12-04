@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Andreia\FilamentUiSwitcher\FilamentUiSwitcherPlugin;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Caresome\FilamentAuthDesigner\Enums\AuthLayout;
 use Caresome\FilamentAuthDesigner\Enums\MediaDirection;
@@ -36,8 +37,6 @@ class AppPanelProvider extends PanelProvider
                 'Académico',
                 'Seguimiento',
             ])
-            ->sidebarCollapsibleOnDesktop()
-            ->collapsedSidebarWidth('1rem')
             ->id('app')
             ->path('app')
             ->login()
@@ -48,35 +47,7 @@ class AppPanelProvider extends PanelProvider
             ->favicon(asset('assets/favicon.ico'))
             ->brandLogo(fn () => view('filament.brand-logo'))
             ->viteTheme('resources/css/filament/app/theme.css')
-            ->font('Quicksand', provider: GoogleFontProvider::class)
-            ->plugins([
-                SpotlightPlugin::make(),
-                AuthDesignerPlugin::make()
-                    ->login(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left,
-                    )
-                    ->registration(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left,
-                    )
-                    ->passwordReset(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left
-                    )
-                    ->emailVerification(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left
-                    )
-                    ->themeToggle()]
-            )
-            ->colors([
-                'primary' => Color::Teal[950],
-            ])
+
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -100,6 +71,33 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->plugins([
+                    FilamentUiSwitcherPlugin::make()
+                    ->withModeSwitcher(true),
+                    SpotlightPlugin::make(),
+                    AuthDesignerPlugin::make()
+                        ->login(
+                            layout: AuthLayout::Panel,
+                            media: asset('assets/loginVideo.mp4'),
+                            direction: MediaDirection::Left,
+                        )
+                        ->registration(
+                            layout: AuthLayout::Panel,
+                            media: asset('assets/loginVideo.mp4'),
+                            direction: MediaDirection::Left,
+                        )
+                        ->passwordReset(
+                            layout: AuthLayout::Panel,
+                            media: asset('assets/loginVideo.mp4'),
+                            direction: MediaDirection::Left
+                        )
+                        ->emailVerification(
+                            layout: AuthLayout::Panel,
+                            media: asset('assets/loginVideo.mp4'),
+                            direction: MediaDirection::Left
+                        )
+                        ->themeToggle()]
+            );
     }
 }
