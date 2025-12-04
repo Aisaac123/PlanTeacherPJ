@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
         Asistencia::observe(AsistenciaObserver::class);
         Tutoria::observe(TutoriaObserver::class);
 
-        if (env('APP_ENV') == 'production') {
-            $url->forceScheme('https');
+        if ($this->app->environment('production')) {
+            \URL::forceScheme('https');
         }
     }
 }
