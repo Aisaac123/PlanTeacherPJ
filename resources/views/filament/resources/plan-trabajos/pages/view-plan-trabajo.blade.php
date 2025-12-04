@@ -6,7 +6,25 @@
         @endphp
 
         @if($media)
-            <x-filament::section>
+            {{-- Visor de PDF --}}
+            <div>
+                <div class="border rounded-lg -mt-4 overflow-hidden bg-gray-50 dark:bg-gray-900">
+                    <object
+                        data="{{ $media->getUrl() }}#toolbar=1&navpanes=1&scrollbar=1"
+                        type="application/pdf"
+                        class="w-full h-[800px]">
+                        <p class="p-4 text-center">
+                            No se puede mostrar el PDF.
+                            <a href="{{ $media->getUrl() }}" target="_blank" class="text-primary-600 hover:underline">
+                                Haz clic aquí para abrirlo
+                            </a>
+                        </p>
+                    </object>
+                </div>
+            </div>
+
+            {{-- Información y botones --}}
+            <x-filament::section class="mt-6">
                 <x-slot name="heading">
                     {{ $planTrabajo->titulo }}
                 </x-slot>
@@ -18,8 +36,12 @@
                 @endif
 
                 <div class="space-y-4">
+                    <p class="text-xs text-gray-500 dark:text-gray-500">
+                        {{ $media->file_name }} ({{ $media->human_readable_size }}) • Última actualización: {{ $planTrabajo->updated_at->format('d/m/Y H:i') }}
+                    </p>
+
                     {{-- Botones de acción --}}
-                    <div class="flex justify-between items-center">
+                    <div class="flex justify-between items-center pt-2 border-t border-gray-200 dark:border-gray-700">
                         <div class="flex gap-2">
                             <x-filament::button
                                 tag="a"
@@ -45,25 +67,6 @@
 
                         {{ ($this->deleteAction) }}
                     </div>
-
-                    {{-- Visor de PDF --}}
-                    <div class="border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900">
-                        <object
-                            data="{{ $media->getUrl() }}#toolbar=1&navpanes=1&scrollbar=1"
-                            type="application/pdf"
-                            class="w-full h-[800px]">
-                            <p class="p-4 text-center">
-                                No se puede mostrar el PDF.
-                                <a href="{{ $media->getUrl() }}" target="_blank" class="text-primary-600 hover:underline">
-                                    Haz clic aquí para abrirlo
-                                </a>
-                            </p>
-                        </object>
-                    </div>
-
-                    <p class="text-xs text-gray-500 dark:text-gray-500">
-                        {{ $media->file_name }} ({{ $media->human_readable_size }}) • Última actualización: {{ $planTrabajo->updated_at->format('d/m/Y H:i') }}
-                    </p>
                 </div>
             </x-filament::section>
         @else
