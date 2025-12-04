@@ -1,4 +1,4 @@
-FROM richarvey/nginx-php-fpm:latest
+FROM serversideup/php:8.4-fpm-nginx
 
 COPY . .
 
