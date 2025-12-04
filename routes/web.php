@@ -16,3 +16,13 @@ Route::get('/app/logout', function () {
 
     return redirect()->to('/');
 });
+
+Route::get('/healthz', function () {
+    try {
+        // Verificar conexión a base de datos
+        \DB::connection()->getPdo();
+        return response()->json(['status' => 'ok', 'database' => 'connected'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
+    }
+});

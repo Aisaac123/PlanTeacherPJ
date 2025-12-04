@@ -16,6 +16,7 @@ ENV LOG_CHANNEL stderr
 
 # Aumentar límite de memoria PHP
 ENV PHP_MEMORY_LIMIT 512M
+ENV COMPOSER_MEMORY_LIMIT -1
 
 # Aumentar workers de PHP-FPM
 ENV PHP_FPM_PM_MAX_CHILDREN 20
