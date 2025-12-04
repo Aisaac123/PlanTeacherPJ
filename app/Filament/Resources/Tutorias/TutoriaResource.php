@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Tutorias;
 
+use App\Filament\Resources\Tutorias\RelationManagers\DetallesRelationManager;
 use App\Filament\Resources\Tutorias\Pages\CreateTutoria;
 use App\Filament\Resources\Tutorias\Pages\EditTutoria;
 use App\Filament\Resources\Tutorias\Pages\ListTutorias;
@@ -42,7 +43,7 @@ class TutoriaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            DetallesRelationManager::class,
         ];
     }
 

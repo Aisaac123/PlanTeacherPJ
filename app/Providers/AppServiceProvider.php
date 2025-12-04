@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Asistencia;
+use App\Models\Tutoria;
 use App\Observers\AsistenciaObserver;
+use App\Observers\TutoriaObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Asistencia::observe(AsistenciaObserver::class);
+        Tutoria::observe(TutoriaObserver::class);
     }
 }

@@ -18,12 +18,12 @@
     <div class="flex items-center gap-3 group">
 
         {{-- SVG modo claro --}}
-        <span class="block dark:hidden w-14 h-auto text-primary-600 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+        <span class="block dark:hidden w-12 h-auto text-primary-600 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
             {!! $svgLight !!}
         </span>
 
         {{-- SVG modo oscuro --}}
-        <span class="hidden dark:block w-14 h-auto text-primary-300 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+        <span class="hidden dark:block w-12 h-auto text-primary-300 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
             {!! $svgDark !!}
         </span>
 
@@ -39,12 +39,12 @@
     <div class="mx-auto text-center group cursor-pointer">
 
         {{-- SVG modo claro --}}
-        <span class="mx-auto block dark:hidden w-14 h-auto text-primary-600 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+        <span class="mx-auto block dark:hidden w-12 h-auto text-primary-600 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
             {!! $svgLight !!}
         </span>
 
         {{-- SVG modo oscuro --}}
-        <span class="mx-auto hidden dark:block w-14 h-auto text-primary-300 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+        <span class="mx-auto hidden dark:block w-12 h-auto text-primary-300 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
             {!! $svgDark !!}
         </span>
 
