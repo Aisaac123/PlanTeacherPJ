@@ -2,10 +2,8 @@ FROM richarvey/nginx-php-fpm:latest
 
 COPY . .
 
-# Instalar Node.js y compilar assets
-RUN apt-get update && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
+# Instalar Node.js en Alpine y compilar assets
+RUN apk add --no-cache nodejs npm && \
     cd /var/www/html && \
     npm ci && \
     npm run build && \
