@@ -46,6 +46,7 @@ class AppPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->passwordReset()
+            ->profile(isSimple: false)
             ->emailVerification()
             ->brandLogoHeight('72px')
             ->favicon(asset('assets/favicon.ico'))
