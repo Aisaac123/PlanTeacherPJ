@@ -10,6 +10,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ExportAction;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
@@ -208,10 +209,23 @@ class InformeResource extends Resource
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    ]),
-                ])
+                    \Filament\Actions\ExportBulkAction::make('exportar_seleccionados')
+                        ->label('Exportar seleccionados')
+                        ->exporter(\App\Filament\Exports\InformeExporter::class)
+                        ->filename('informes_seleccionados'),
+                ]),
+
+                ExportAction::make('exportar_todo')
+                    ->label('Exportar todo')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('gray')
+                    ->exporter(\App\Filament\Exports\InformeExporter::class)
+                    ->fileName('informes_completos_' . now()->format('Y-m-d_His'))
+                    ->modifyQueryUsing(function ($query) {
+                        // Solo informes del docente actual
+                        return $query->where('user_id', auth()->id());
+                    }),
             ])
             ->defaultSort('created_at', 'desc');
     }

@@ -70,7 +70,7 @@ class AsignaturasTable
 
                 ]),
                 ExportAction::make('exportar_todas')
-                    ->label('Exportar todas')
+                    ->label('Exportar todo')
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color('gray')
                     ->exporter(AsignaturaExporter::class)
@@ -81,7 +81,7 @@ class AsignaturasTable
                         return $query->where('actividad_docente_id', $actividadDocenteId);
                     }),
                 Action::make('Eliminar todas las asignaturas de la actividad docente')
-                    ->label('Eliminar todas las asignaturas')
+                    ->label('Eliminar todo')
                     ->icon('heroicon-o-trash')
                     ->color('danger')
                     ->requiresConfirmation()
