@@ -3,6 +3,11 @@
 namespace App\Providers\Filament;
 
 use Andreia\FilamentUiSwitcher\FilamentUiSwitcherPlugin;
+use App\Filament\Widgets\ActividadesComplementariasChart;
+use App\Filament\Widgets\AsignaturasTableWidget;
+use App\Filament\Widgets\HorasDocenciaChart;
+use App\Filament\Widgets\InformesRecientesWidget;
+use App\Filament\Widgets\WelcomeWidget;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Caresome\FilamentAuthDesigner\Enums\AuthLayout;
 use Caresome\FilamentAuthDesigner\Enums\MediaDirection;
@@ -15,6 +20,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
+use Filament\Widgets\StatsOverviewWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -53,7 +59,12 @@ class AppPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
+                WelcomeWidget::class,
+                StatsOverviewWidget::class,
+                HorasDocenciaChart::class,
+                ActividadesComplementariasChart::class,
+                AsignaturasTableWidget::class,
+                InformesRecientesWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

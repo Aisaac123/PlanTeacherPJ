@@ -83,7 +83,7 @@ class CreateTutoria extends CreateRecord
                 ->where('asignatura_id', $asignaturaId)
                 ->where(function ($query) use ($fechaInicio, $fechaFinal) {
                     $query->whereBetween('fecha', [$fechaInicio, $fechaFinal])
-                        ->orWhereRaw('? BETWEEN fecha AND datetime(fecha, "+" || horas || " hours")', [$fechaInicio]);
+                        ->orWhereRaw('? BETWEEN fecha AND DATE_ADD(fecha, INTERVAL horas HOUR)', [$fechaInicio]);
                 })
                 ->exists();
 

@@ -112,6 +112,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasOne(PlanTrabajo::class);
     }
 
+    public function informes()
+    {
+        return $this->hasMany(Informe::class);
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return true;

@@ -99,7 +99,7 @@ class EditTutoria extends EditRecord
                 ->where('id', '!=', $this->record->id)
                 ->where(function ($query) use ($fechaInicio, $fechaFinal) {
                     $query->whereBetween('fecha', [$fechaInicio, $fechaFinal])
-                        ->orWhereRaw('? BETWEEN fecha AND datetime(fecha, "+" || horas || " hours")', [$fechaInicio]);
+                        ->orWhereRaw('? BETWEEN fecha AND DATE_ADD(fecha, INTERVAL horas HOUR)', [$fechaInicio]);
                 })
                 ->exists();
 
