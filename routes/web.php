@@ -26,3 +26,12 @@ Route::get('/healthz', function () {
         return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
     }
 });
+
+Route::get('/test-session', function () {
+    return [
+        'authenticated' => auth()->check(),
+        'user_id' => auth()->id(),
+        'session_id' => session()->getId(),
+        'session_data' => session()->all(),
+    ];
+})->middleware('web');
