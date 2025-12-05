@@ -25,19 +25,6 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function canAccessPanel(Panel $panel): bool
-    {
-        // Opción 1: Permitir a todos (para testing)
-        return true;
-
-        // Opción 2: Solo admins
-        // return $this->hasRole('admin');
-
-        // Opción 3: Basado en el ID del panel
-        // if ($panel->getId() === 'app') {
-        //     return true;
-        // }
-    }
     /**
      * Atributos ocultos.
      */
