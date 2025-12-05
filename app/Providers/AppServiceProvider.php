@@ -2,11 +2,19 @@
 
 namespace App\Providers;
 
+use App\Models\ActividadDocente;
+use App\Models\Asignatura;
 use App\Models\Asistencia;
+use App\Models\Informe;
 use App\Models\Tutoria;
+use App\Observers\ActividadDocenteObserver;
+use App\Observers\AsignaturaObserver;
 use App\Observers\AsistenciaObserver;
+use App\Observers\InformeMediaObserver;
+use App\Observers\InformeObserver;
 use App\Observers\TutoriaObserver;
 use Illuminate\Support\ServiceProvider;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +33,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Asistencia::observe(AsistenciaObserver::class);
         Tutoria::observe(TutoriaObserver::class);
+
+        //Sistema de carpetas
+        ActividadDocente::observe(ActividadDocenteObserver::class);
+        Asignatura::observe(AsignaturaObserver::class);
+        Media::observe(InformeMediaObserver::class);
+        Informe::observe(InformeObserver::class);
+
     }
 }
