@@ -30,6 +30,7 @@ class AppPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->globalSearch(false)
+            ->authGuard('web')
             ->navigationGroups([
                 'Gestión Académica',
                 'Académico',

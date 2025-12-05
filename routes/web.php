@@ -35,3 +35,14 @@ Route::get('/test-session', function () {
         'session_data' => session()->all(),
     ];
 })->middleware('web');
+
+Route::get('/test-email-verification', function () {
+    $user = auth()->user();
+
+    return [
+        'user_id' => $user?->id,
+        'email' => $user?->email,
+        'email_verified_at' => $user?->email_verified_at,
+        'is_verified' => $user?->hasVerifiedEmail(),
+    ];
+})->middleware('web');
