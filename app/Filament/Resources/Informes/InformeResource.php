@@ -24,6 +24,9 @@ class InformeResource extends Resource
 
     protected static string|null|\BackedEnum $navigationIcon = 'heroicon-o-document-text';
 
+    protected static string|null|\UnitEnum $navigationGroup = 'Gestión Académica';
+    protected static ?int $navigationSort = 4;
+
     protected static ?string $navigationLabel = 'Informes';
 
     protected static ?string $modelLabel = 'Informe';

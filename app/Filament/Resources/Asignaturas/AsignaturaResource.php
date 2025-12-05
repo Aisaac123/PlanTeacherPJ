@@ -28,7 +28,7 @@ class AsignaturaResource extends Resource
 
     protected static ?string $navigationLabel = 'Asignaturas';
 
-    protected static string|null|\UnitEnum $navigationGroup = 'Gestión Académica';
+    protected static string|null|\UnitEnum $navigationGroup = 'Académico';
 
     protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-book-open';
 
