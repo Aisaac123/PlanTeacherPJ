@@ -109,4 +109,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(PlanTrabajo::class);
     }
+
+    public function informes()
+    {
+        return $this->hasMany(Informe::class);
+    }
 }
