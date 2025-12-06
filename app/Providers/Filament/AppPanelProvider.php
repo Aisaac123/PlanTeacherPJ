@@ -27,6 +27,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use MarcelWeidum\Passkeys\PasskeysPlugin;
 use pxlrbt\FilamentSpotlight\SpotlightPlugin;
 
 class AppPanelProvider extends PanelProvider
@@ -85,8 +86,9 @@ class AppPanelProvider extends PanelProvider
             ->databaseNotifications() // ← Esta línea es clave
             ->databaseNotificationsPolling('30s') // Opcional: polling cada 30s
             ->plugins([
+                PasskeysPlugin::make(),
                 FilamentUiSwitcherPlugin::make()
-                    ->withModeSwitcher(true),
+                    ->withModeSwitcher(),
                 SpotlightPlugin::make(),
                 AuthDesignerPlugin::make()
                     ->login(

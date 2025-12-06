@@ -11,3 +11,5 @@ Route::get('/app/logout', function () {
 
     return redirect()->to('/');
 });
+
+Route::passkeys();

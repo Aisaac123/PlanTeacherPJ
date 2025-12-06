@@ -13,6 +13,7 @@
         "filament/spatie-laravel-media-library-plugin": "^4.2",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "marcelweidum/filament-passkeys": "^2.0",
         "phpoffice/phpspreadsheet": "^5.3",
         "pxlrbt/filament-spotlight": "^2.0"
     },
