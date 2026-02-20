@@ -13,6 +13,7 @@ use App\Observers\AsistenciaObserver;
 use App\Observers\InformeMediaObserver;
 use App\Observers\InformeObserver;
 use App\Observers\TutoriaObserver;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -29,8 +30,12 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
+        if (config('app.env') === 'production' || request()->header('x-forwarded-proto') === 'https') {
+            \URL::forceScheme('https');
+        }
+
         Asistencia::observe(AsistenciaObserver::class);
         Tutoria::observe(TutoriaObserver::class);
 
@@ -40,5 +45,9 @@ class AppServiceProvider extends ServiceProvider
         Media::observe(InformeMediaObserver::class);
         Informe::observe(InformeObserver::class);
 
+
+        if ($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
     }
 }

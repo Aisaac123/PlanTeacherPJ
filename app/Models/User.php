@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Andreia\FilamentUiSwitcher\Models\Traits\HasUiPreferences;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
     use HasUiPreferences;
@@ -113,5 +115,10 @@ class User extends Authenticatable
     public function informes()
     {
         return $this->hasMany(Informe::class);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
     }
 }
