@@ -11,6 +11,7 @@ use App\Filament\Widgets\WelcomeWidget;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Caresome\FilamentAuthDesigner\Enums\AuthLayout;
 use Caresome\FilamentAuthDesigner\Enums\MediaDirection;
+use Caresome\FilamentAuthDesigner\Enums\MediaPosition;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -88,28 +89,7 @@ class AppPanelProvider extends PanelProvider
                 FilamentUiSwitcherPlugin::make()
                     ->withModeSwitcher(true),
                 SpotlightPlugin::make(),
-                AuthDesignerPlugin::make()
-                    ->login(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left,
-                    )
-                    ->registration(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left,
-                    )
-                    ->passwordReset(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left
-                    )
-                    ->emailVerification(
-                        layout: AuthLayout::Panel,
-                        media: asset('assets/loginVideo.mp4'),
-                        direction: MediaDirection::Left
-                    )
-                    ->themeToggle()]
+                ]
             );
     }
 }

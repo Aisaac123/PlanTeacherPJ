@@ -32,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url): void
     {
+        if (config('app.env') === 'production' || request()->header('x-forwarded-proto') === 'https') {
+            \URL::forceScheme('https');
+        }
+
         Asistencia::observe(AsistenciaObserver::class);
         Tutoria::observe(TutoriaObserver::class);
 
